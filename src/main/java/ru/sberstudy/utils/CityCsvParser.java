@@ -163,4 +163,20 @@ public class CityCsvParser {
         }
         return Optional.ofNullable(city);
     }
+
+    /**
+     * Реализовать поиск количества городов в разрезе регионов.
+     * Необходимо определить количество городов в каждом регионе.
+     */
+    public void printCountCityIntoRegion() {
+        Map<String, Integer> regionCount = new HashMap<>();
+        for (City city : cityList) {
+            if (!regionCount.containsKey(city.getRegion())) {
+                regionCount.put(city.getRegion(), 1);
+            } else {
+                regionCount.put(city.getRegion(), regionCount.get(city.getRegion()) + 1);
+            }
+        }
+        regionCount.forEach((key, value) -> System.out.printf("%s = %d%n", key, value));
+    }
 }

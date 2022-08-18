@@ -18,6 +18,10 @@ public class City {
         return population;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
     public City(Long id, String name, String region, String district, Long population, String foundation) {
         this.id = id;
         this.name = name;
