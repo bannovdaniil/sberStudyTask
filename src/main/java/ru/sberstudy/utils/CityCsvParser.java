@@ -6,16 +6,25 @@ import ru.sberstudy.model.City;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
+/**
+ * Класс работы с данными о городах из указанного файла.
+ */
 public class CityCsvParser {
+    private final String fileName;
     private final static int MAX_ELEMENTS = 5;
     private final List<City> cityList = new ArrayList<>();
 
-    public void parse(String fileName) {
+    public CityCsvParser(String fileName) {
+        this.fileName = fileName;
+        parse();
+    }
+
+    /**
+     * парсер файла в список.
+     */
+    private void parse() {
         try {
             Scanner scanner = new Scanner(Paths.get(Main.class.getClassLoader().getResource(fileName).toURI()));
 
@@ -30,10 +39,33 @@ public class CityCsvParser {
         }
     }
 
+    /**
+     * вывод списка на экран
+     */
     public void print() {
         cityList.forEach(System.out::println);
     }
 
+    /**
+     * сортировка по городам
+     */
+    public void sortByCity() {
+        cityList.sort(Comparator.comparing(City::getName));
+    }
+
+    /**
+     * сортировка по федеральному округу и по городам
+     */
+    public void sortByDistrict() {
+        cityList.sort(Comparator.comparing(City::getDistrict).thenComparing(City::getName));
+    }
+
+    /**
+     * парсинг объекта City из строки
+     *
+     * @param textLine - строка из файла с данными
+     * @return {@link City}
+     */
     private static Optional<City> parseLine(String textLine) {
         String[] element = textLine.split(";");
         City city = null;
