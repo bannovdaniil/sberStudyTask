@@ -47,10 +47,22 @@ public class CityCsvParser {
     }
 
     /**
-     * сортировка по городам
+     * сортировка по городам без учета регистра Lambda выражение
      */
-    public void sortByCity() {
-        cityList.sort(Comparator.comparing(city -> city.getName().toLowerCase()));
+    public void sortByCityLambdaVersion() {
+        cityList.sort((city1, city2) -> city1.getName().compareToIgnoreCase(city2.getName()));
+    }
+
+    /**
+     * сортировка по городам без учета регистра Comporator версия
+     */
+    public void sortByCityComparatorVersion() {
+        cityList.sort(new Comparator<City>() {
+            @Override
+            public int compare(City city1, City city2) {
+                return city1.getName().compareToIgnoreCase(city2.getName());
+            }
+        });
     }
 
     /**
