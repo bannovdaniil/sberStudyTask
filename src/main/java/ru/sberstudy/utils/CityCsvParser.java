@@ -50,7 +50,7 @@ public class CityCsvParser {
      * сортировка по городам
      */
     public void sortByCity() {
-        cityList.sort(Comparator.comparing(City::getName));
+        cityList.sort(Comparator.comparing(city -> city.getName().toLowerCase()));
     }
 
     /**
