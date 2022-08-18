@@ -47,6 +47,24 @@ public class CityCsvParser {
     }
 
     /**
+     * находит и отображает на экране индекс и количество населения самого крупного города
+     */
+    public void printCityIndexWithMaxPopulation() {
+        City[] cityArray = cityList.toArray(new City[0]);
+        int maxCityIndex = 0;
+        long maxCityPopulation = cityArray[0].getPopulation();
+
+        for (int index = 0; index < cityArray.length; index++) {
+            if (maxCityPopulation < cityArray[index].getPopulation()) {
+                maxCityPopulation = cityArray[index].getPopulation();
+                maxCityIndex = index;
+            }
+        }
+
+        System.out.printf("[%d] %,d", maxCityIndex, maxCityPopulation);
+    }
+
+    /**
      * сортировка по городам без учета регистра Lambda выражение
      */
     public void sortByCityLambdaVersion() {

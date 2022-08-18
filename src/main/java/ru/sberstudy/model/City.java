@@ -10,6 +10,10 @@ public class City {
     private final Long population;
     private final String foundation;
 
+    public Long getPopulation() {
+        return population;
+    }
+
     public String getName() {
         return name;
     }
