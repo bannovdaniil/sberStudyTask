@@ -10,16 +10,12 @@ public class City {
     private final Long population;
     private final String foundation;
 
+    public Long getId() {
+        return id;
+    }
+
     public Long getPopulation() {
         return population;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDistrict() {
-        return district;
     }
 
     public City(Long id, String name, String region, String district, Long population, String foundation) {
@@ -49,22 +45,11 @@ public class City {
 
         City city = (City) o;
 
-        if (!Objects.equals(id, city.id)) return false;
-        if (!Objects.equals(name, city.name)) return false;
-        if (!Objects.equals(region, city.region)) return false;
-        if (!Objects.equals(district, city.district)) return false;
-        if (!Objects.equals(population, city.population)) return false;
-        return Objects.equals(foundation, city.foundation);
+        return Objects.equals(population, city.population);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (region != null ? region.hashCode() : 0);
-        result = 31 * result + (district != null ? district.hashCode() : 0);
-        result = 31 * result + (population != null ? population.hashCode() : 0);
-        result = 31 * result + (foundation != null ? foundation.hashCode() : 0);
-        return result;
+        return population != null ? population.hashCode() : 0;
     }
 }
